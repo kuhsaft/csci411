@@ -1,3 +1,10 @@
+/*
+ * Peter Nguyen
+ * CSCI 411 - Shell Program
+ *
+ * Compile with `-std=c++11`
+ */
+
 #include <iostream>
 #include <list>
 #include <functional>
