@@ -33,7 +33,7 @@ std::string get_history_filepath() {
         homedir = getpwuid(getuid())->pw_dir;
     }
     std::string history_filepath(homedir);
-    history_filepath += "/.abash_history";
+    history_filepath += "/.simplesh_history";
 
     return history_filepath;
 }

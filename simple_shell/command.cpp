@@ -58,7 +58,7 @@ bool hi_mom() {
 std::string getCommand() {
     std::string input;
 
-    std::cout << "abash $ ";
+    std::cout << "simplesh $ ";
     std::getline(std::cin, input);
     trim(input);
     return input;
@@ -88,6 +88,7 @@ bool parseCommand(const std::string &command,
     exec = cmd.front();
     cmd.pop_front();
 
+    redirect_stdout = false;
     auto cmd_iter = cmd.begin();
     while (cmd_iter != cmd.end() && *cmd_iter != ">") ++cmd_iter;
     if (cmd_iter != cmd.end()) {

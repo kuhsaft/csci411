@@ -34,10 +34,10 @@ Compiling Projects
 
 **Example:**
 ```
-$ cd shell_program
+$ cd simple_shell
 $ mkdir cmake-build && cd cmake-build
 $ cmake .. && make
 .....
-[100%] Built target shell_program
-$ ./shell_program
+[100%] Built target simple_shell
+$ ./simple_shell
 ```
