@@ -3,6 +3,7 @@
 #include <functional>
 #include <unistd.h>
 #include <pwd.h>
+#include <sys/signal.h>
 #include "redirect.h"
 #include "command.h"
 
