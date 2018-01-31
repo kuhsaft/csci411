@@ -20,8 +20,8 @@ int main() {
   // Read /proc/cpuinfo
   std::ifstream cpuinfo_ifs("/proc/cpuinfo");
   std::string cpuinfo(
-    (std::istreambuf_iterator<char>(cpuinfo_ifs)),
-    (std::istreambuf_iterator<char>())
+      (std::istreambuf_iterator<char>(cpuinfo_ifs)),
+      (std::istreambuf_iterator<char>())
   );
 
   /******************************
@@ -53,7 +53,7 @@ int main() {
   while (std::regex_search(search_start, cpuinfo.cend(), processors_info_match, processor_info_regex)) {
     std::cout << "    " << processors_info_match[0] << std::endl; // Output each match
     search_start += processors_info_match.position() + processors_info_match.length();
-  } 
+  }
   std::cout << std::endl;
 
   /******************
@@ -93,8 +93,8 @@ int main() {
   // Read /proc/meminfo
   std::ifstream meminfo_ifs("/proc/meminfo");
   std::string meminfo(
-    (std::istreambuf_iterator<char>(meminfo_ifs)),
-    (std::istreambuf_iterator<char>())
+      (std::istreambuf_iterator<char>(meminfo_ifs)),
+      (std::istreambuf_iterator<char>())
   );
 
   // Search for 'MemTotal' and 'MemFree'
@@ -104,7 +104,7 @@ int main() {
   while (std::regex_search(search_start, meminfo.cend(), meminfo_match, meminfo_regex)) {
     std::cout << "    " << meminfo_match[0] << std::endl; // Output each match
     search_start += meminfo_match.position() + meminfo_match.length();
-  } 
+  }
 
   return 0;
 }

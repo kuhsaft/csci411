@@ -33,12 +33,12 @@ std::string getCommand();
 /// @param history the fstream to append to
 /// @returns true if the command is valid
 bool parseCommand(
-        const std::string &command,
-        std::string &exec,
-        std::list<std::string> &args,
-        bool &redirect_stdout,
-        std::string &redirect_file,
-        std::fstream &history
+    const std::string &command,
+    std::string &exec,
+    std::list<std::string> &args,
+    bool &redirect_stdout,
+    std::string &redirect_file,
+    std::fstream &history
 );
 
 /// Runs the command
@@ -47,10 +47,9 @@ bool parseCommand(
 /// @param quit the function to run on quit
 /// @returns true if the command is successful
 bool runCommand(
-        const std::string &cmd,
-        const std::list<std::string> &args,
-        const std::function<void()> &quit
+    const std::string &cmd,
+    const std::list<std::string> &args,
+    const std::function<void()> &quit
 );
-
 
 #endif //CSCI411_COMMAND_H
