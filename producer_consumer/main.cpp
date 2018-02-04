@@ -2,7 +2,7 @@
  * Peter Nguyen
  * CSCI 411 - Producer Consumer
  *
- * Compile with `-std=c++11 -lpthread`
+ * Compile with `-std=c++11 -pthread`
  */
 
 #include <iostream>
