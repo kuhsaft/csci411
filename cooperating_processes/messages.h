@@ -24,23 +24,32 @@ enum MessageType {
   TEMPERATURE
 };
 
+union message_data {
+  double double_val;
+  long long_val;
+
+  explicit message_data(double val) : double_val(val) {}
+  explicit message_data(long val) : long_val(val) {}
+};
+
 typedef struct message {
   MessageType type;
-  long data;
+  message_data data;
 
-  message() : type(UNKNOWN), data(0) {}
+  message() : type(UNKNOWN), data(0L) {}
+  message(MessageType type, double data) : type(type), data(data) {}
   message(MessageType type, long data) : type(type), data(data) {}
 } message;
 
 std::ostream &operator<<(std::ostream &out, const message &in) {
   switch (in.type) {
-    case SYN:out << "SYN: ";
+    case SYN:out << "SYN: " << in.data.long_val;
       break;
-    case SYN_ACK:out << "SYN_ACK: ";
+    case SYN_ACK:out << "SYN_ACK: " << in.data.long_val;
       break;
-    case ACK:out << "ACK: ";
+    case ACK:out << "ACK: " << in.data.long_val;
       break;
-    case TEMPERATURE:out << "Temperature: ";
+    case TEMPERATURE:out << "Temperature: " << in.data.double_val;
       break;
     case DONE: out << "Done";
       return out;
@@ -48,7 +57,6 @@ std::ostream &operator<<(std::ostream &out, const message &in) {
       return out;
   }
 
-  out << in.data;
   return out;
 }
 
