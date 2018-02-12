@@ -7,6 +7,7 @@
 
 #include <ostream>
 
+// Configuration
 const char server_queue_name[] = "/temperature-server";
 const char client_server_queue_name[] = "/temperature-client-server-"; // Client-to-server
 const char server_client_queue_name[] = "/temperature-server-client-"; // Server-to-client
@@ -15,6 +16,7 @@ const long max_messages = 10;
 const long max_msg_size = 256;
 const long msg_buffer_size = max_msg_size + 10;
 
+/// Message types
 enum MessageType {
   UNKNOWN,
   SYN,
@@ -24,6 +26,8 @@ enum MessageType {
   TEMPERATURE
 };
 
+/// Message Data
+/// Can be long or double
 union message_data {
   double double_val;
   long long_val;
@@ -32,6 +36,8 @@ union message_data {
   explicit message_data(long val) : long_val(val) {}
 };
 
+/// Message
+/// Has a type and data value
 typedef struct message {
   MessageType type;
   message_data data;

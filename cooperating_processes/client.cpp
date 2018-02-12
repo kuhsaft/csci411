@@ -1,3 +1,10 @@
+/*
+ * Peter Nguyen
+ * CSCI 411 - Cooperating Processes - Client
+ *
+ * Compile with `-std=c++11 -lrt`
+ */
+
 #include <cstdlib>
 #include <csignal>
 #include <iostream>
@@ -15,6 +22,7 @@ mqd_t qd_client_send, qd_client_recv;
 
 const long client_id = getpid();
 
+/// Close all queues on quit
 void quit(int signal = 0) {
   mq_close(qd_client_send);
   mq_close(qd_client_recv);
@@ -26,14 +34,17 @@ void quit(int signal = 0) {
   }
 }
 
+/// Logs an error message
 void print_error(const std::string &message) {
   std::cerr << "Client " << client_id << ": " << message << std::endl;
 }
 
+/// Logs a message
 void print_message(const std::string &message) {
   std::cout << "Client " << client_id << ": " << message << std::endl;
 }
 
+/// Converts a client number to the starting temp
 double client_number_to_temp(long number) {
   switch (number) {
     case 0: return 100;

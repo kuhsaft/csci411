@@ -1,3 +1,10 @@
+/*
+ * Peter Nguyen
+ * CSCI 411 - Cooperating Processes - Server
+ *
+ * Compile with `-std=c++11 -lrt`
+ */
+
 #include <csignal>
 #include <cmath>
 #include <iostream>
@@ -13,6 +20,7 @@ const size_t num_clients = 4;
 mqd_t qd_server;
 mqd_t qd_client_send[num_clients], qd_client_recv[num_clients];
 
+/// Close all queues on quit
 void quit(int signal = 0) {
   mq_close(qd_server);
   for (mqd_t client_send_mq : qd_client_send) {
@@ -26,6 +34,11 @@ void quit(int signal = 0) {
   }
 }
 
+/// Receives values from each client and sends the central temp
+/// Temperature values are modified/updated
+///
+/// \param central_temp the central temperature
+/// \param external_temps external temperature values
 void iterate(double &central_temp, double external_temps[num_clients]) {
   double sum = 0.0;
   for (size_t i = 0; i < num_clients; ++i) {
@@ -58,6 +71,10 @@ void iterate(double &central_temp, double external_temps[num_clients]) {
   }
 }
 
+/// Returns false if the difference in external temperatures are < 0.0001
+///
+/// \param external_temps the external temperatures
+/// \return If the temperatures are stable
 bool is_stable(const double external_temps[num_clients]) {
   double val = external_temps[0];
   for (size_t i = 1; i < num_clients; ++i) {
