@@ -18,7 +18,6 @@
 #include <grp.h>
 #include <libgen.h>
 #include <pwd.h>
-#include <sys/acl.h>
 #include <sys/stat.h>
 #include <sys/sysmacros.h>
 #include <sys/types.h>
